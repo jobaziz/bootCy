@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src *; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://www.google.com">
+    <title>CycloneBOOT - IAP Demo</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+    <style>
+        #failure {
+            display: block;
+        }
+
+        #failure:empty {
+            display: none;
+        }
+
+        #successs {
+            display: block;
+        }
+
+        #success:empty {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-block  text-center container">
+        <div class="p-4 bg-white">
+            <div class="d-grid d-sm-flex justify-content-sm-center">
+                <img class="d-block mx-auto mb-4" src="images/logo-oryx-embedded.svg" alt="" width="172" height="120">
+                <img class="d-block mx-auto mb-4" src="images/logo-oryx-CycloneBOOT.svg" alt="" width="172"
+                    height="124">
+            </div>
+            <div class="header">
+                <h2 class="display-6 fw-bold">In Application Programming Demonstration</h2>
+                <p class="lead">
+                    HTTP server running on STM32F769I-DISCO board. Firmware update is performed through a HTML UI.
+                </p>
+            </div>
+            <hr>
+            <div class="col-lg-6 mx-auto p-1">
+                <h4>Current firmware version: <span id="currentVersion"></span></h4>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="scenarioDesc"></div>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <ul class="list-group list-group-horizontal-sm">
+                        <li class="list-group-item" id="step1">Step 1: Choose a file to upload to the target
+                        </li>
+                        <li class="list-group-item" id="step2">Step 2: Send the chosen file to the target</li>
+                        <li class="list-group-item" id="step3">Step 3: Firmware Installation</li>
+                    </ul>
+                </div>
+                <br />
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <div class="input-group">
+                        <input type="file" class="form-control form-control-lg hidden" id="uploadInput" name="myFile"
+                            aria-describedby="submit" aria-label="Upload" accept=".img">
+                        <button class="btn btn-outline-secondary disabled" type="button" id="submit">Upload</button>
+                    </div>
+                </div>
+                <div class="metadata">
+                    <p>Selected file size: <span id="fileSize">N/A</span></p>
+                </div>
+
+                <div class="messageZone">
+                    <div id="failure" class="alert alert-danger" role="alert"></div>
+                    <div id="success" class="alert alert-success" role="alert"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // default
+            document.getElementById('step1').classList.add("list-group-item-success");
+
+            if (document.getElementById("uploadInput").value != "") {
+                document.getElementById('step1').classList.remove("list-group-item-success");
+                document.getElementById('step2').classList.add("list-group-item-success");
+            }
+
+            document.getElementById('submit').onclick = function changeContent() {
+
+                document.getElementById('step2').classList.remove("list-group-item-success");
+                document.getElementById('step3').classList.add("list-group-item-success");
+
+            }
+        }, false);
+
+    </script>
+    <script src="js/spark-md5.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+#define image_builder_VERSION_MAJOR @APP_VERSION_MAJOR@
+#define image_builder_VERSION_MINOR @APP_VERSION_MINOR@
+#define image_builder_VERSION_PATCH @APP_VERSION_PATCH@
+
+#define image_builder_HEADER_VERSION_MAJOR @HEADER_VERSION_MAJOR@
+#define image_builder_HEADER_VERSION_MINOR @HEADER_VERSION_MINOR@
+#define image_builder_HEADER_VERSION_PATCH @HEADER_VERSION_PATCH@
+
+#define image_builder_TIMESTAMP "@TIMESTAMP@"
